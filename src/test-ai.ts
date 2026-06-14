@@ -1,7 +1,8 @@
 import { generateEscapeRoom } from './services/aiEngine';
+import logger from './config/logger';
 
 async function main() {
-  console.log('🎮 Testing AI Engine...\n');
+  logger.info('🎮 Testing AI Engine...\n');
 
   const result = await generateEscapeRoom({
     genre: 'Detective',
@@ -11,14 +12,14 @@ async function main() {
     language: 'English',
   });
 
-  console.log('✅ Zod validation passed!\n');
-  console.log('Title:', result.title);
-  console.log('Riddles count:', result.riddles.length);
-  console.log('\nFull result:');
-  console.log(JSON.stringify(result, null, 2));
+  logger.info('✅ Zod validation passed!\n');
+  logger.info(`Title: ${result.title}`);
+  logger.info(`Riddles count: ${result.riddles.length}`);
+  logger.info('\nFull result:');
+  logger.info(JSON.stringify(result, null, 2));
 }
 
 main().catch((err) => {
-  console.error('❌ Error:', err.message);
+  logger.error(`❌ Error: ${err.message}`);
   process.exit(1);
 });
