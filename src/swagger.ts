@@ -7,7 +7,7 @@ const options = {
   },
   // כאן אנחנו מגדירים את התיעוד ישירות (או מפנים אותו ל-Routes אם נרצה)
   // אבל הדרך הכי נקייה היא להגדיר כאן את ה-Paths בצורה מרוכזת
-  apis: ['./src/routes/*.ts'], 
+  apis: ['./src/routes/*.ts'],
 };
 
 export const swaggerSpec = swaggerJsdoc(options);

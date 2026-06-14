@@ -1,24 +1,26 @@
-import { useForm } from "react-hook-form";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAuth, type Role } from "../context/AuthContext";
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth, type Role } from '../context/AuthContext';
 
 interface LoginFields {
-  email:    string;
+  email: string;
   password: string;
-  role:     Role;
+  role: Role;
 }
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const navigate  = useNavigate();
-  const location  = useLocation();
-  const from = (location.state as { from?: { pathname: string } })?.from?.pathname ?? "/catalog";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from =
+    (location.state as { from?: { pathname: string } })?.from?.pathname ??
+    '/catalog';
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFields>({ defaultValues: { role: "Player" } });
+  } = useForm<LoginFields>({ defaultValues: { role: 'Player' } });
 
   const onSubmit = async (data: LoginFields) => {
     await new Promise((r) => setTimeout(r, 600));
@@ -43,35 +45,80 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8">
           <div className="text-4xl mb-3">🔐</div>
-          <h1 className="text-3xl font-black text-white tracking-widest" style={{ fontFamily: "'Cinzel', 'Georgia', serif" }}>
+          <h1
+            className="text-3xl font-black text-white tracking-widest"
+            style={{ fontFamily: "'Cinzel', 'Georgia', serif" }}
+          >
             ENTER THE VAULT
           </h1>
-          <p className="mt-2 text-neutral-500 text-xs font-mono">Authentication required to proceed</p>
+          <p className="mt-2 text-neutral-500 text-xs font-mono">
+            Authentication required to proceed
+          </p>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate className="rounded-2xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-8 space-y-5 shadow-[0_0_60px_rgba(0,0,0,0.5)]">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="rounded-2xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl p-8 space-y-5 shadow-[0_0_60px_rgba(0,0,0,0.5)]"
+        >
           <div>
-            <label className="block mb-2 text-xs font-semibold tracking-widest uppercase text-amber-400/80">Email</label>
-            <input {...register("email", { required: "Email is required." })} type="email" placeholder="operator@vault.io" className={inputCls} />
-            {errors.email && <p className="mt-1 text-xs text-rose-400">{errors.email.message}</p>}
+            <label className="block mb-2 text-xs font-semibold tracking-widest uppercase text-amber-400/80">
+              Email
+            </label>
+            <input
+              {...register('email', { required: 'Email is required.' })}
+              type="email"
+              placeholder="operator@vault.io"
+              className={inputCls}
+            />
+            {errors.email && (
+              <p className="mt-1 text-xs text-rose-400">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div>
-            <label className="block mb-2 text-xs font-semibold tracking-widest uppercase text-amber-400/80">Password</label>
-            <input {...register("password", { required: "Password is required." })} type="password" placeholder="••••••••" className={inputCls} />
-            {errors.password && <p className="mt-1 text-xs text-rose-400">{errors.password.message}</p>}
+            <label className="block mb-2 text-xs font-semibold tracking-widest uppercase text-amber-400/80">
+              Password
+            </label>
+            <input
+              {...register('password', { required: 'Password is required.' })}
+              type="password"
+              placeholder="••••••••"
+              className={inputCls}
+            />
+            {errors.password && (
+              <p className="mt-1 text-xs text-rose-400">
+                {errors.password.message}
+              </p>
+            )}
           </div>
           <div>
-            <label className="block mb-2 text-xs font-semibold tracking-widest uppercase text-amber-400/80">Role</label>
-            <select {...register("role")} className={`${inputCls} cursor-pointer`}>
+            <label className="block mb-2 text-xs font-semibold tracking-widest uppercase text-amber-400/80">
+              Role
+            </label>
+            <select
+              {...register('role')}
+              className={`${inputCls} cursor-pointer`}
+            >
               <option value="Player">Player</option>
               <option value="Game_Master">Game Master</option>
             </select>
           </div>
-          <button type="submit" disabled={isSubmitting} className="w-full py-3 mt-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-black text-xs tracking-[0.2em] uppercase hover:from-amber-400 hover:to-orange-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all duration-300 disabled:opacity-50">
-            {isSubmitting ? "AUTHENTICATING…" : "UNLOCK ACCESS"}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-3 mt-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-black text-xs tracking-[0.2em] uppercase hover:from-amber-400 hover:to-orange-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all duration-300 disabled:opacity-50"
+          >
+            {isSubmitting ? 'AUTHENTICATING…' : 'UNLOCK ACCESS'}
           </button>
           <p className="text-center text-neutral-600 text-xs font-mono pt-1">
-            No account?{" "}
-            <Link to="/register" className="text-amber-400/80 hover:text-amber-400 transition-colors">Register here</Link>
+            No account?{' '}
+            <Link
+              to="/register"
+              className="text-amber-400/80 hover:text-amber-400 transition-colors"
+            >
+              Register here
+            </Link>
           </p>
         </form>
       </div>

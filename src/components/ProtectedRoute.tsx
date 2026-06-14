@@ -1,6 +1,5 @@
-
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth, type Role } from "../context/AuthContext";
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useAuth, type Role } from '../context/AuthContext';
 
 interface ProtectedRouteProps {
   allowedRoles?: Role[];
@@ -9,7 +8,7 @@ interface ProtectedRouteProps {
 
 export default function ProtectedRoute({
   allowedRoles,
-  redirectTo = "/login",
+  redirectTo = '/login',
 }: ProtectedRouteProps) {
   const { isAuthenticated, role } = useAuth();
   const location = useLocation();

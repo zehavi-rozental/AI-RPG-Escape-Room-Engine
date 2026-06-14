@@ -6,6 +6,13 @@
   --font-body: 'Heebo', sans-serif;
 }
 
+:root {
+  color-scheme: dark;
+  font-family: 'Heebo', sans-serif;
+  background-color: #0b0a10;
+  color: #f5f5f5;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -18,6 +25,17 @@ body,
 }
 
 body {
-  font-family: 'Heebo', sans-serif;
   background-color: #0b0a10;
+  background-image: radial-gradient(circle at top, rgba(245, 158, 11, 0.08), transparent 35%);
+}
+
+button,
+a {
+  transition: all 200ms ease;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(245, 158, 11, 0.8);
+  outline-offset: 2px;
 }

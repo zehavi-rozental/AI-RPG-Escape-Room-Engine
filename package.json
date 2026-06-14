@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "cross-env NODE_ENV=test jest --forceExit --runInBand",
     "start": "node dist/app.js",
-    "lint": "eslint src/**/*.ts src/**/*.js"
+    "lint": "eslint \"src/**/*.{ts,tsx,js}\""
   },
   "keywords": [],
   "author": "",

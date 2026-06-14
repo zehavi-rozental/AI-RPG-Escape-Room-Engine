@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = CatalogPage;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_router_dom_1 = require("react-router-dom");
+const AuthContext_1 = require("../context/AuthContext");
+function CatalogPage() {
+    const { role, user, logout } = (0, AuthContext_1.useAuth)();
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "min-h-screen bg-neutral-950 relative overflow-hidden", children: [(0, jsx_runtime_1.jsx)("div", { className: "pointer-events-none absolute inset-0 opacity-[0.03]", style: {
+                    backgroundImage: 'linear-gradient(rgba(251,191,36,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(251,191,36,0.4) 1px, transparent 1px)',
+                    backgroundSize: '40px 40px',
+                } }), (0, jsx_runtime_1.jsxs)("nav", { className: "relative z-10 border-b border-neutral-800 px-6 py-4 flex items-center justify-between", children: [(0, jsx_runtime_1.jsx)("span", { className: "text-amber-400 font-black tracking-widest text-lg", style: { fontFamily: "'Cinzel', 'Georgia', serif" }, children: "VAULT //" }), (0, jsx_runtime_1.jsxs)("div", { className: "flex items-center gap-4", children: [role === 'Game_Master' && ((0, jsx_runtime_1.jsx)(react_router_dom_1.Link, { to: "/create-game", className: "px-4 py-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-bold tracking-widest uppercase rounded-lg hover:bg-amber-400/20 transition-colors", children: "+ Forge Room" })), (0, jsx_runtime_1.jsxs)("span", { className: "text-neutral-600 text-xs font-mono hidden sm:block", children: [user, " \u00B7 ", role?.replace('_', ' ')] }), (0, jsx_runtime_1.jsx)("button", { onClick: logout, className: "text-neutral-500 hover:text-rose-400 text-xs font-mono transition-colors", children: "Logout" })] })] }), (0, jsx_runtime_1.jsxs)("main", { className: "relative z-10 px-6 py-16 max-w-5xl mx-auto text-center", children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-5xl font-black text-white tracking-widest mb-4", style: { fontFamily: "'Cinzel', 'Georgia', serif" }, children: "ESCAPE ROOM CATALOG" }), (0, jsx_runtime_1.jsx)("p", { className: "text-neutral-500 font-mono text-sm mb-12", children: role === 'Game_Master'
+                            ? 'As Game Master, you may forge new rooms or browse existing ones.'
+                            : 'Browse available escape rooms below.' }), (0, jsx_runtime_1.jsx)("div", { className: "grid md:grid-cols-3 gap-4", children: ['The Forgotten Asylum', 'Sector Ω-9', "The Alchemist's Den"].map((title) => ((0, jsx_runtime_1.jsxs)("div", { className: "rounded-xl border border-neutral-800 bg-neutral-900/60 p-6 text-left hover:border-amber-400/30 transition-colors", children: [(0, jsx_runtime_1.jsx)("div", { className: "text-2xl mb-3", children: "\uD83D\uDD10" }), (0, jsx_runtime_1.jsx)("h3", { className: "text-white font-bold text-sm mb-1", children: title }), (0, jsx_runtime_1.jsx)("p", { className: "text-neutral-600 text-xs font-mono", children: "Sample room \u00B7 4 players \u00B7 Hard" })] }, title))) })] })] }));
+}

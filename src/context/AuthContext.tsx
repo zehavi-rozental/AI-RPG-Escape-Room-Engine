@@ -1,14 +1,13 @@
-// @ts-ignore: React module types are not available in this environment
-import React, {
+import {
   createContext,
-  useContext,
-  useState,
-  useEffect,
   useCallback,
+  useContext,
+  useEffect,
+  useState,
   type ReactNode,
-} from "react";
+} from 'react';
 
-export type Role = "Player" | "Game_Master" | null;
+export type Role = 'Player' | 'Game_Master' | null;
 
 interface AuthState {
   user: string | null;
@@ -23,9 +22,9 @@ interface AuthContextValue extends AuthState {
 }
 
 const STORAGE_KEYS = {
-  TOKEN: "er_token",
-  ROLE: "er_role",
-  USER: "er_user",
+  TOKEN: 'er_token',
+  ROLE: 'er_role',
+  USER: 'er_user',
 } as const;
 
 const defaultState: AuthState = {
@@ -46,6 +45,7 @@ function loadFromStorage(): AuthState {
       return { token, role, user, isAuthenticated: true };
     }
   } catch {
+    // Ignore storage access issues in non-browser environments.
   }
   return defaultState;
 }
@@ -58,13 +58,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (state.isAuthenticated && state.token && state.role) {
         localStorage.setItem(STORAGE_KEYS.TOKEN, state.token);
         localStorage.setItem(STORAGE_KEYS.ROLE, state.role);
-        if (state.user) localStorage.setItem(STORAGE_KEYS.USER, state.user);
+        if (state.user) {
+          localStorage.setItem(STORAGE_KEYS.USER, state.user);
+        }
       } else {
         localStorage.removeItem(STORAGE_KEYS.TOKEN);
         localStorage.removeItem(STORAGE_KEYS.ROLE);
         localStorage.removeItem(STORAGE_KEYS.USER);
       }
     } catch {
+      // Ignore storage access issues in non-browser environments.
     }
   }, [state]);
 
@@ -90,6 +93,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth(): AuthContextValue {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
+  if (!ctx) throw new Error('useAuth must be used inside <AuthProvider>');
   return ctx;
 }
