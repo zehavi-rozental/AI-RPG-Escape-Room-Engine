@@ -21,7 +21,7 @@ export const protect = (req: Request, res: Response, next: NextFunction): void =
     const decoded = jwt.verify(token, process.env.JWT_SECRET || '') as DecodedToken;
     req.user = { id: decoded.id, role: decoded.role };
     next();
-  } catch (error) {
+  } catch (_error) {
     res.status(401).json({ message: 'Not authorized, token failed' });
   }
 };
