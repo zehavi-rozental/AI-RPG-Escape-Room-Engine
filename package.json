@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
-  "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-  "test": "cross-env NODE_ENV=test jest --forceExit --runInBand",
-  "start": "node dist/app.js"
-},
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "test": "cross-env NODE_ENV=test jest --forceExit --runInBand",
+    "start": "node dist/app.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -37,7 +37,11 @@
     "@types/node": "^25.9.3",
     "@types/supertest": "^7.2.0",
     "cross-env": "^7.0.3",
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
     "jest": "^30.4.2",
+    "prettier": "^3.8.4",
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.11",
     "ts-node-dev": "^2.0.0",
